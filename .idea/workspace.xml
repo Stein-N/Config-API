@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f746342-2902-4ad6-99a0-9595fa24f953" name="Changes" comment="fix attempt">
+    <list default="true" id="1f746342-2902-4ad6-99a0-9595fa24f953" name="Changes" comment="fix random rescaling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/screen/ConfigApiScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/screen/ConfigApiScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListWidget.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListEntry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigTab.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +130,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1759411344284</updated>
-      <workItem from="1759411345484" duration="16994000" />
+      <workItem from="1759411345484" duration="20682000" />
     </task>
     <task id="LOCAL-00001" summary="restart with 1.21.9">
       <option name="closed" value="true" />
@@ -164,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759426880724</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix random rescaling">
+      <option name="closed" value="true" />
+      <created>1759431633131</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1759431633131</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +183,7 @@
     <MESSAGE value="rename everything" />
     <MESSAGE value="working screen with tabs" />
     <MESSAGE value="fix attempt" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix attempt" />
+    <MESSAGE value="fix random rescaling" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix random rescaling" />
   </component>
 </project>
