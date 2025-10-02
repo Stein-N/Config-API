@@ -4,35 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f746342-2902-4ad6-99a0-9595fa24f953" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+    <list default="true" id="1f746342-2902-4ad6-99a0-9595fa24f953" name="Changes" comment="restart with 1.21.9">
+      <change afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/ConfigAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/api/ConfigRegistry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/builder/IResourceConfigBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/builder/ResourceConfigBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/builder/ResourceConfigBuilderBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/config/ModConfigFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/config/entry/ConfigEntry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/config/values/ConfigValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/config/values/IConfigValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/config/values/primitive/BooleanConfigValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/config/values/primitive/DoubleConfigValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/config/values/primitive/IntegerConfigValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/config/values/primitive/StringConfigValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/config/values/reference/ArrayListConfigValue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/config/values/reference/ListConfigValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/TemplateMod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/template-mod/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/config-api/icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fabric.mod.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fabric.mod.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/template-mod.mixins.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +24,13 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -51,6 +38,9 @@
   "associatedIndex": 2
 }]]></component>
   <component name="ProjectId" id="33VnwNRk9Rlrjz5vMPoERYP8L5u" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -64,6 +54,10 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/Minecraft Mods/Config-API",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -84,11 +78,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1759411344284</updated>
-      <workItem from="1759411345484" duration="262000" />
+      <workItem from="1759411345484" duration="982000" />
     </task>
+    <task id="LOCAL-00001" summary="restart with 1.21.9">
+      <option name="closed" value="true" />
+      <created>1759411630604</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759411630604</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="restart with 1.21.9" />
+    <option name="LAST_COMMIT_MESSAGE" value="restart with 1.21.9" />
   </component>
 </project>
