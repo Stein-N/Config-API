@@ -12,8 +12,14 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.xstopho.configapi.ConfigApi;
+import net.xstopho.configapi.client.gui.widget.ConfigListEntry;
 import net.xstopho.configapi.client.gui.widget.ConfigTab;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class ConfigApiScreen extends Screen {
     private final Screen parent;
@@ -22,9 +28,9 @@ public class ConfigApiScreen extends Screen {
     private final TabManager tabManager;
     private TabNavigationBar tabNavigationBar;
 
-    private final ConfigTab client = new ConfigTab("Client");
-    private final ConfigTab common = new ConfigTab("Common");
-    private final ConfigTab server = new ConfigTab("Server");
+    private final ConfigTab client = new ConfigTab("Client", createDummyEntries(Items.DIAMOND));
+    private final ConfigTab common = new ConfigTab("Common", createDummyEntries(Items.NETHERITE_SCRAP));
+    private final ConfigTab server = new ConfigTab("Server", createDummyEntries(Items.GOLD_NUGGET));
 
     public ConfigApiScreen(Screen parent, String modId) {
         super(Component.literal("Config Screen - " + modId));
@@ -45,8 +51,9 @@ public class ConfigApiScreen extends Screen {
         footer.addChild(Button.builder(Component.literal("This is a Button"), button -> ConfigApi.LOGGER.info("This is a Button")).width(150).build());
 
         this.layout.visitWidgets(this::addRenderableWidget);
-        this.addRenderableWidget(this.tabNavigationBar);
-        this.tabNavigationBar.selectTab(0, false);
+
+        this.addRenderableWidget(tabNavigationBar);
+        this.tabNavigationBar.selectTab(0, true);
 
         this.repositionElements();
     }
@@ -82,5 +89,14 @@ public class ConfigApiScreen extends Screen {
             Minecraft.getInstance().setScreen(this.parent);
         }
         return super.keyPressed(keyEvent);
+    }
+
+    private Collection<ConfigListEntry> createDummyEntries(ItemLike item) {
+        Collection<ConfigListEntry> entries = new ArrayList<>();
+        for (int index = 1; index <= 100; index++) {
+            entries.add(new ConfigListEntry(index, item));
+        }
+
+        return entries;
     }
 }

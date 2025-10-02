@@ -7,16 +7,18 @@ import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 
 import java.util.List;
 
 public class ConfigListEntry extends ContainerObjectSelectionList.Entry<ConfigListEntry> {
 
     private final int index;
+    private final ItemLike item;
 
-    public ConfigListEntry(int index) {
+    public ConfigListEntry(int index, ItemLike item) {
         this.index = index;
+        this.item = item;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class ConfigListEntry extends ContainerObjectSelectionList.Entry<ConfigLi
 
     @Override
     public void renderContent(GuiGraphics guiGraphics, int mouseX, int mouseY, boolean hovered, float f) {
-        guiGraphics.renderItem(new ItemStack(Items.DIAMOND, 1), this.getContentX(), this.getContentY());
+        guiGraphics.renderItem(new ItemStack(this.item, 1), this.getContentX(), this.getContentY());
         guiGraphics.drawString(Minecraft.getInstance().gui.getFont(), Component.literal("Index: " + this.index), this.getContentX() + 32, this.getContentY() + 5, -1, false);
     }
 

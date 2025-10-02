@@ -5,7 +5,6 @@ import net.minecraft.client.gui.components.tabs.Tab;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.network.chat.Component;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Consumer;
 
@@ -14,17 +13,12 @@ public class ConfigTab implements Tab {
     private final String title;
     private final ConfigListWidget configList;
 
-    public ConfigTab(String title) {
+    public ConfigTab(String title, Collection<ConfigListEntry> entries) {
         this.title = title;
 
+
         this.configList = new ConfigListWidget(0, 0, 0, 24);
-
-        Collection<ConfigListEntry> entries = new ArrayList<>();
-        for (int index = 0; index <= 100; index++) {
-            entries.add(new ConfigListEntry(index));
-        }
-
-        configList.replaceEntries(entries);
+        this.configList.replaceEntries(entries);
     }
 
     @Override

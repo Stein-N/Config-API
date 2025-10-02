@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f746342-2902-4ad6-99a0-9595fa24f953" name="Changes" comment="rename everything">
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/ConfigApiClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/screen/ConfigApiScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListEntry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListWidget.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigTab.java" afterDir="false" />
+    <list default="true" id="1f746342-2902-4ad6-99a0-9595fa24f953" name="Changes" comment="working screen with tabs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/ConfigAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/ConfigApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fabric.mod.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fabric.mod.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/screen/ConfigApiScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/screen/ConfigApiScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListWidget.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigTab.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +130,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1759411344284</updated>
-      <workItem from="1759411345484" duration="10305000" />
+      <workItem from="1759411345484" duration="12581000" />
     </task>
     <task id="LOCAL-00001" summary="restart with 1.21.9">
       <option name="closed" value="true" />
@@ -151,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759412400087</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="working screen with tabs">
+      <option name="closed" value="true" />
+      <created>1759424418095</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1759424418095</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +165,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="restart with 1.21.9" />
     <MESSAGE value="rename everything" />
-    <option name="LAST_COMMIT_MESSAGE" value="rename everything" />
+    <MESSAGE value="working screen with tabs" />
+    <option name="LAST_COMMIT_MESSAGE" value="working screen with tabs" />
   </component>
 </project>
