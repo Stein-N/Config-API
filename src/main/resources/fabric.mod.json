@@ -9,7 +9,8 @@
 	"icon": "assets/config-api/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [ "net.xstopho.configapi.ConfigAPI" ]
+		"main": [ "net.xstopho.configapi.ConfigApi" ],
+		"client": [ "net.xstopho.configapi.ConfigApiClient" ]
 	},
 	"depends": {
 		"java": ">=21",
