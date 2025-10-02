@@ -19,7 +19,7 @@ import net.xstopho.configapi.client.gui.widget.ConfigListEntry;
 import net.xstopho.configapi.client.gui.widget.ConfigTab;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 public class ConfigApiScreen extends Screen {
     private final Screen parent;
@@ -91,8 +91,8 @@ public class ConfigApiScreen extends Screen {
         return super.keyPressed(keyEvent);
     }
 
-    private Collection<ConfigListEntry> createDummyEntries(ItemLike item) {
-        Collection<ConfigListEntry> entries = new ArrayList<>();
+    private List<ConfigListEntry> createDummyEntries(ItemLike item) {
+        List<ConfigListEntry> entries = new ArrayList<>();
         for (int index = 1; index <= 100; index++) {
             entries.add(new ConfigListEntry(index, item));
         }

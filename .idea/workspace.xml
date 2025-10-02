@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f746342-2902-4ad6-99a0-9595fa24f953" name="Changes" comment="working screen with tabs">
+    <list default="true" id="1f746342-2902-4ad6-99a0-9595fa24f953" name="Changes" comment="fix attempt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/screen/ConfigApiScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/screen/ConfigApiScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListEntry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigListWidget.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/xstopho/configapi/client/gui/widget/ConfigTab.java" afterDir="false" />
     </list>
@@ -68,7 +67,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Gradle.Config-API [:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
+    "Gradle.Build Config-API.executor": "Run",
+    "Gradle.Config-API [:net.fabricmc.devlaunchinjector.Main.main()].executor": "Debug",
     "Gradle.Config-API [genSources].executor": "Run",
     "Gradle.Download Sources.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -130,7 +130,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1759411344284</updated>
-      <workItem from="1759411345484" duration="12581000" />
+      <workItem from="1759411345484" duration="16994000" />
     </task>
     <task id="LOCAL-00001" summary="restart with 1.21.9">
       <option name="closed" value="true" />
@@ -156,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759424418095</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix attempt">
+      <option name="closed" value="true" />
+      <created>1759426880724</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1759426880724</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +174,7 @@
     <MESSAGE value="restart with 1.21.9" />
     <MESSAGE value="rename everything" />
     <MESSAGE value="working screen with tabs" />
-    <option name="LAST_COMMIT_MESSAGE" value="working screen with tabs" />
+    <MESSAGE value="fix attempt" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix attempt" />
   </component>
 </project>

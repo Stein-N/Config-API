@@ -14,7 +14,10 @@ public class ConfigListWidget extends ContainerObjectSelectionList<ConfigListEnt
     protected void renderListSeparators(GuiGraphics guiGraphics) {}
 
     @Override
+    protected void renderListBackground(GuiGraphics guiGraphics) {}
+
+    @Override
     public int getRowWidth() {
-        return (int) Math.floor(this.width * 0.75);
+        return (int) Math.floor(this.width * 0.8);
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.client.gui.components.tabs.Tab;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.network.chat.Component;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class ConfigTab implements Tab {
@@ -13,11 +13,10 @@ public class ConfigTab implements Tab {
     private final String title;
     private final ConfigListWidget configList;
 
-    public ConfigTab(String title, Collection<ConfigListEntry> entries) {
+    public ConfigTab(String title, List<ConfigListEntry> entries) {
         this.title = title;
 
-
-        this.configList = new ConfigListWidget(0, 0, 0, 24);
+        this.configList = new ConfigListWidget(0, 0, 23, 24);
         this.configList.replaceEntries(entries);
     }
 
@@ -38,6 +37,6 @@ public class ConfigTab implements Tab {
 
     @Override
     public void doLayout(ScreenRectangle screenRectangle) {
-        this.configList.setRectangle(screenRectangle.width() - configList.getWidth(), screenRectangle.height(), 0,23);
+        this.configList.setRectangle(screenRectangle.width(), screenRectangle.height(), 0,23);
     }
 }
