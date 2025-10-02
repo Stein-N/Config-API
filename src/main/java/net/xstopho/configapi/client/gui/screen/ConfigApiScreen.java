@@ -28,16 +28,20 @@ public class ConfigApiScreen extends Screen {
     private final TabManager tabManager;
     private TabNavigationBar tabNavigationBar;
 
-    private final ConfigTab client = new ConfigTab("Client", createDummyEntries(Items.DIAMOND));
-    private final ConfigTab common = new ConfigTab("Common", createDummyEntries(Items.NETHERITE_SCRAP));
-    private final ConfigTab server = new ConfigTab("Server", createDummyEntries(Items.GOLD_NUGGET));
+    private final ConfigTab client;
+    private final ConfigTab common;
+    private final ConfigTab server;
 
     public ConfigApiScreen(Screen parent, String modId) {
         super(Component.literal("Config Screen - " + modId));
         this.parent = parent;
 
-        this.layout = new HeaderAndFooterLayout(this, 32, 32);
+        this.layout = new HeaderAndFooterLayout(this, 24, 28);
         tabManager = new TabManager(this::addRenderableWidget, this::removeWidget);
+
+        client = new ConfigTab("Client", createDummyEntries(Items.DIAMOND), layout);
+        common = new ConfigTab("Common", createDummyEntries(Items.NETHERITE_SCRAP), layout);
+        server = new ConfigTab("Server", createDummyEntries(Items.GOLD_NUGGET), layout);
     }
 
     @Override
@@ -48,7 +52,7 @@ public class ConfigApiScreen extends Screen {
         this.tabNavigationBar = builder.build();
 
         LinearLayout footer = this.layout.addToFooter(LinearLayout.horizontal().spacing(8));
-        footer.addChild(Button.builder(Component.literal("This is a Button"), button -> ConfigApi.LOGGER.info("This is a Button")).width(150).build());
+        footer.addChild(Button.builder(Component.literal("This is a Button"), button -> ConfigApi.LOGGER.info("Button was clicked")).width(150).build());
 
         this.layout.visitWidgets(this::addRenderableWidget);
 
@@ -62,8 +66,7 @@ public class ConfigApiScreen extends Screen {
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float ticks) {
         super.render(guiGraphics, mouseX, mouseY, ticks);
 
-        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, Screen.FOOTER_SEPARATOR, 0, this.height - 35,
-                0F, 0F, this.width, 2, 32, 2);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, Screen.FOOTER_SEPARATOR, 0, this.height - 30, 0F, 0F, this.width, 2, 30, 2);
     }
 
     @Override
@@ -71,8 +74,8 @@ public class ConfigApiScreen extends Screen {
         if (this.tabNavigationBar != null && !this.tabNavigationBar.children().isEmpty()) {
             this.tabNavigationBar.setWidth(this.width);
             this.tabNavigationBar.arrangeElements();
-            int i = this.tabNavigationBar.getRectangle().bottom();
-            ScreenRectangle screenRectangle = new ScreenRectangle(0, i, this.width, this.height - (i * 2) - 10);
+            int i = this.layout.getHeaderHeight();
+            ScreenRectangle screenRectangle = new ScreenRectangle(0, i, this.width, this.height - (i * 2) - 6);
             this.tabManager.setTabArea(screenRectangle);
         }
         this.layout.arrangeElements();
