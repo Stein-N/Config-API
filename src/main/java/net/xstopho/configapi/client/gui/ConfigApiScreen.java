@@ -1,0 +1,126 @@
+package net.xstopho.configapi.client.gui;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.tabs.TabManager;
+import net.minecraft.client.gui.components.tabs.TabNavigationBar;
+import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
+import net.minecraft.client.gui.layouts.LinearLayout;
+import net.minecraft.client.gui.navigation.ScreenRectangle;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
+import net.minecraft.client.input.KeyEvent;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.network.chat.Component;
+import net.xstopho.configapi.ConfigApi;
+import net.xstopho.configapi.api.ConfigRegistry;
+import net.xstopho.configapi.client.gui.tooltip.ConfigApiTooltipProvider;
+import net.xstopho.configapi.client.gui.widgets.ConfigTab;
+import net.xstopho.configapi.client.gui_old.utils.GuiUtils;
+import net.xstopho.configapi.config.ModConfig;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ConfigApiScreen extends Screen {
+    private final Screen parent;
+    private final String modId;
+
+    private final List<ModConfig> modConfigs = new ArrayList<>();
+    private final List<ConfigApiTooltipProvider> tooltips = new ArrayList<>();
+
+    private final HeaderAndFooterLayout layout;
+    private final TabManager tabManager;
+    private TabNavigationBar tabNavigationBar;
+
+    private final ConfigTab client, common, server;
+
+    public ConfigApiScreen(Screen parent, String modId) {
+        super(Component.literal("config_screen_" + modId));
+        this.parent = parent;
+        this.modId = modId;
+
+        ConfigRegistry.getConfigList().forEach(this::collectConfigs);
+
+        this.layout = new HeaderAndFooterLayout(this, 24, 28);
+        tabManager = new TabManager(this::addRenderableWidget, this::removeWidget);
+
+        client = new ConfigTab(ConfigRegistry.Type.CLIENT, this, getConfigsByType(ConfigRegistry.Type.CLIENT), layout);
+        common = new ConfigTab(ConfigRegistry.Type.COMMON, this, getConfigsByType(ConfigRegistry.Type.COMMON), layout);
+        server = new ConfigTab(ConfigRegistry.Type.SERVER, this, getConfigsByType(ConfigRegistry.Type.SERVER), layout);
+    }
+
+    @Override
+    protected void init() {
+        TabNavigationBar.Builder builder = TabNavigationBar.builder(this.tabManager, this.width);
+        builder.addTabs(this.client, this.common, this.server);
+        this.tabNavigationBar = builder.build();
+
+        LinearLayout footer = this.layout.addToFooter(LinearLayout.horizontal().spacing(8));
+        footer.addChild(Button.builder(Component.literal("Close"), btn -> ConfigApi.LOGGER.warn("Screen Closed")).width(100).build());
+        footer.addChild(Button.builder(Component.literal("Reset"), btn -> ConfigApi.LOGGER.warn("Value Reset")).width(100).build());
+        footer.addChild(Button.builder(Component.literal("Save & Exit"), btn -> ConfigApi.LOGGER.warn("Save & Exit")).width(100).build());
+
+        this.layout.visitWidgets(this::addRenderableWidget);
+
+        this.addRenderableWidget(this.tabNavigationBar);
+        this.tabNavigationBar.selectTab(0, true);
+
+        this.repositionElements();
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float ticks) {
+        super.render(guiGraphics, mouseX, mouseY, ticks);
+
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, Screen.FOOTER_SEPARATOR, 0, this.height - 30, 0F, 0F, this.width, 2, 30, 2);
+
+        this.tooltips.forEach(provider -> {
+            guiGraphics.renderTooltip(GuiUtils.getFont(), provider.getTooltip(), mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null);
+        });
+    }
+
+    @Override
+    protected void repositionElements() {
+        if (this.tabNavigationBar != null && !this.tabNavigationBar.children().isEmpty()) {
+            this.tabNavigationBar.setWidth(this.width);
+            this.tabNavigationBar.arrangeElements();
+            int i = this.layout.getHeaderHeight();
+            ScreenRectangle screenRectangle = new ScreenRectangle(0, i, this.width, this.height - (i * 2) - 6);
+            this.tabManager.setTabArea(screenRectangle);
+        }
+        this.layout.arrangeElements();
+    }
+
+    @Override
+    public void onClose() {
+        Minecraft.getInstance().setScreen(this.parent);
+    }
+
+    @Override
+    public boolean keyPressed(KeyEvent keyEvent) {
+        if (keyEvent.key() == 256 && this.shouldCloseOnEsc()) {
+            Minecraft.getInstance().setScreen(this.parent);
+        }
+        return super.keyPressed(keyEvent);
+    }
+
+    private void collectConfigs(ModConfig config) {
+        modConfigs.clear();
+        if (config.getModId().equals(modId)) {
+            modConfigs.add(config);
+        }
+    }
+
+    private List<ModConfig> getConfigsByType(ConfigRegistry.Type configType) {
+        List<ModConfig> configs = new ArrayList<>();
+        for (ModConfig modConfig : modConfigs) {
+            if (modConfig.getConfigType() ==  configType) {
+                configs.add(modConfig);
+            }
+        }
+
+        return configs;
+    }
+}
