@@ -6,8 +6,8 @@ import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 
 public class ConfigListWidget extends ContainerObjectSelectionList<ConfigListEntry> {
 
-    public ConfigListWidget(int width, int height, int y, int itemHeight) {
-        super(Minecraft.getInstance(), width, height, y, itemHeight);
+    public ConfigListWidget(int width, int height, int yPos, int defaultEntryHeight) {
+        super(Minecraft.getInstance(), width, height, yPos, defaultEntryHeight);
     }
 
     @Override
