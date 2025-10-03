@@ -16,8 +16,8 @@ import net.minecraft.network.chat.Component;
 import net.xstopho.configapi.ConfigApi;
 import net.xstopho.configapi.api.ConfigRegistry;
 import net.xstopho.configapi.client.gui.tooltip.ConfigApiTooltipProvider;
+import net.xstopho.configapi.client.gui.utils.GuiUtils;
 import net.xstopho.configapi.client.gui.widgets.ConfigTab;
-import net.xstopho.configapi.client.gui_old.utils.GuiUtils;
 import net.xstopho.configapi.config.ModConfig;
 
 import java.util.ArrayList;
