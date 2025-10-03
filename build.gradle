@@ -10,6 +10,13 @@ base {
 	archivesName = project.archives_base_name
 }
 
+sourceSets {
+    testmod {
+        runtimeClasspath += sourceSets.main.runtimeClasspath
+        compileClasspath += sourceSets.main.compileClasspath
+    }
+}
+
 repositories {
     maven {url = "https://maven.terraformersmc.com/" }
 }
@@ -20,7 +27,23 @@ dependencies {
 	mappings loom.officialMojangMappings()
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	
+
+    modImplementation("com.terraformersmc:modmenu:16.0.0-rc.1")
+
+    testmodImplementation sourceSets.main.output
+}
+
+loom {
+    runs {
+        client {
+            client()
+            source sourceSets.testmod
+            setConfigName("Fabric Test Client")
+            ideConfigGenerated(true)
+            programArgs('--username', 'Dev')
+            runDir("runs/client")
+        }
+    }
 }
 
 processResources {

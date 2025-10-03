@@ -10,7 +10,8 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [ "net.xstopho.configapi.ConfigApi" ],
-		"client": [ "net.xstopho.configapi.ConfigApiClient" ]
+		"client": [ "net.xstopho.configapi.ConfigApiClient" ],
+      "modmenu": [ "net.xstopho.configapi.ConfigApiModMenu" ]
 	},
 	"depends": {
 		"java": ">=21",
