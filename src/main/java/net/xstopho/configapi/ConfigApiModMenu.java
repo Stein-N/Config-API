@@ -2,7 +2,7 @@ package net.xstopho.configapi;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
-import net.xstopho.configapi.client.gui.screen.ConfigApiScreen;
+import net.xstopho.configapi.client.gui.ConfigApiScreen;
 
 public class ConfigApiModMenu implements ModMenuApi {
     @Override
