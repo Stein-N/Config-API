@@ -9,12 +9,15 @@ import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
 import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.xstopho.configapi.ConfigApi;
+import net.xstopho.configapi.client.gui.tooltip.ConfigApiTooltipProvider;
+import net.xstopho.configapi.client.gui.utils.GuiUtils;
 import net.xstopho.configapi.client.gui.widget.ConfigListEntry;
 import net.xstopho.configapi.client.gui.widget.ConfigTab;
 
@@ -32,6 +35,8 @@ public class ConfigApiScreen extends Screen {
     private final ConfigTab common;
     private final ConfigTab server;
 
+    private final List<ConfigApiTooltipProvider> tooltips = new ArrayList<>();
+
     public ConfigApiScreen(Screen parent, String modId) {
         super(Component.literal("Config Screen - " + modId));
         this.parent = parent;
@@ -39,9 +44,9 @@ public class ConfigApiScreen extends Screen {
         this.layout = new HeaderAndFooterLayout(this, 24, 28);
         tabManager = new TabManager(this::addRenderableWidget, this::removeWidget);
 
-        client = new ConfigTab("Client", createDummyEntries(Items.DIAMOND), layout);
-        common = new ConfigTab("Common", createDummyEntries(Items.NETHERITE_SCRAP), layout);
-        server = new ConfigTab("Server", createDummyEntries(Items.GOLD_NUGGET), layout);
+        client = new ConfigTab("Client", createDummyEntries(Items.DIAMOND, this), layout);
+        common = new ConfigTab("Common", createDummyEntries(Items.NETHERITE_SCRAP, this), layout);
+        server = new ConfigTab("Server", createDummyEntries(Items.GOLD_NUGGET, this), layout);
     }
 
     @Override
@@ -67,6 +72,10 @@ public class ConfigApiScreen extends Screen {
         super.render(guiGraphics, mouseX, mouseY, ticks);
 
         guiGraphics.blit(RenderPipelines.GUI_TEXTURED, Screen.FOOTER_SEPARATOR, 0, this.height - 30, 0F, 0F, this.width, 2, 30, 2);
+
+        this.tooltips.forEach(provider -> {
+            guiGraphics.renderTooltip(GuiUtils.getFont(), provider.getTooltip(), mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null);
+        });
     }
 
     @Override
@@ -94,12 +103,21 @@ public class ConfigApiScreen extends Screen {
         return super.keyPressed(keyEvent);
     }
 
-    private List<ConfigListEntry> createDummyEntries(ItemLike item) {
+    private List<ConfigListEntry> createDummyEntries(ItemLike item, ConfigApiScreen screen) {
         List<ConfigListEntry> entries = new ArrayList<>();
         for (int index = 1; index <= 100; index++) {
-            entries.add(new ConfigListEntry(index, item));
+            entries.add(new ConfigListEntry(index, item, screen));
         }
 
         return entries;
+    }
+
+    public void addTooltip(ConfigApiTooltipProvider provider) {
+        if (this.tooltips.contains(provider)) return;
+        this.tooltips.add(provider);
+    }
+
+    public void removeTooltip(ConfigApiTooltipProvider provider) {
+        this.tooltips.remove(provider);
     }
 }
