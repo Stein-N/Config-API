@@ -23,8 +23,8 @@ import java.util.Map;
 public class ModConfig {
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final PlatformHelper helper = PlatformHelper.INSTANCE;
-    public final ConfigRegistry.Type configType;
-    public final String modId;
+    private final ConfigRegistry.Type configType;
+    private final String modId;
     private final File file;
 
     private final Map<Field, Object> defaultValueMap;
@@ -161,9 +161,9 @@ public class ModConfig {
                     ConfigApi.LOGGER.warn("Value '{}' is out of range, using default Value: {}", field.getName(), defaultValue);
                     return defaultValue;
                 }
+            } else {
+                ConfigApi.LOGGER.warn("Range for '{}' was ignored, it isn't a Numeric Value!", field.getName());
             }
-        } else {
-            ConfigApi.LOGGER.warn("Range for '{}' was ignored, it isn't a Numeric Value!", field.getName());
         }
 
         return parsedValue;
@@ -233,6 +233,18 @@ public class ModConfig {
             return defaultValueMap.get(field);
         }
         throw new IllegalStateException("Default Value for Field " + field.getName() + " didn't exist!");
+    }
+
+    public ConfigRegistry.Type getConfigType() {
+        return configType;
+    }
+
+    public String getConfigName() {
+        return clazz.getAnnotation(Config.class).filename();
+    }
+
+    public String getModId() {
+        return modId;
     }
 
     public void load() {
