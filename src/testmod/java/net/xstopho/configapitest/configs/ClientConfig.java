@@ -9,4 +9,10 @@ public class ClientConfig {
 
     @ConfigEntry
     public static int scale = 100;
+
+    @ConfigEntry
+    public static int powerConsumption = 100;
+
+    @ConfigEntry
+    public static int powerExtraction = 100;
 }
