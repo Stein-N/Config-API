@@ -1,4 +1,4 @@
-package net.xstopho.configapi.client.gui.widget;
+package net.xstopho.configapi.client.gui_old.widget;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;

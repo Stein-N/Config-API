@@ -1,4 +1,4 @@
-package net.xstopho.configapi.client.gui.utils;
+package net.xstopho.configapi.client.gui_old.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;

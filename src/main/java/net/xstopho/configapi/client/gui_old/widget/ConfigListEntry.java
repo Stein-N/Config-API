@@ -1,4 +1,4 @@
-package net.xstopho.configapi.client.gui.widget;
+package net.xstopho.configapi.client.gui_old.widget;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -10,10 +10,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.xstopho.configapi.client.gui.screen.ConfigApiScreen;
+import net.xstopho.configapi.client.gui_old.screen.ConfigApiScreen;
 import net.xstopho.configapi.client.gui.tooltip.ConfigApiTooltip;
 import net.xstopho.configapi.client.gui.tooltip.ConfigApiTooltipProvider;
-import net.xstopho.configapi.client.gui.utils.GuiUtils;
+import net.xstopho.configapi.client.gui_old.utils.GuiUtils;
 
 import java.util.List;
 

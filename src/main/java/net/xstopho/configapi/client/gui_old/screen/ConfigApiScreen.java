@@ -1,4 +1,4 @@
-package net.xstopho.configapi.client.gui.screen;
+package net.xstopho.configapi.client.gui_old.screen;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -17,9 +17,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.xstopho.configapi.ConfigApi;
 import net.xstopho.configapi.client.gui.tooltip.ConfigApiTooltipProvider;
-import net.xstopho.configapi.client.gui.utils.GuiUtils;
-import net.xstopho.configapi.client.gui.widget.ConfigListEntry;
-import net.xstopho.configapi.client.gui.widget.ConfigTab;
+import net.xstopho.configapi.client.gui_old.utils.GuiUtils;
+import net.xstopho.configapi.client.gui_old.widget.ConfigListEntry;
+import net.xstopho.configapi.client.gui_old.widget.ConfigTab;
 
 import java.util.ArrayList;
 import java.util.List;
