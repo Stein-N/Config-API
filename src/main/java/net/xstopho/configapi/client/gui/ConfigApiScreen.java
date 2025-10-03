@@ -13,58 +13,55 @@ import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPosition
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.xstopho.configapi.ConfigApi;
-import net.xstopho.configapi.api.ConfigRegistry;
 import net.xstopho.configapi.client.gui.tooltip.ConfigApiTooltipProvider;
 import net.xstopho.configapi.client.gui.utils.GuiUtils;
-import net.xstopho.configapi.client.gui.widgets.ConfigTab;
-import net.xstopho.configapi.config.ModConfig;
+import net.xstopho.configapi.client.gui.widget.ConfigListEntry;
+import net.xstopho.configapi.client.gui.widget.ConfigTab;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigApiScreen extends Screen {
     private final Screen parent;
-    private final String modId;
-
-    private final List<ModConfig> modConfigs = new ArrayList<>();
-    private final List<ConfigApiTooltipProvider> tooltips = new ArrayList<>();
 
     private final HeaderAndFooterLayout layout;
     private final TabManager tabManager;
     private TabNavigationBar tabNavigationBar;
 
-    private final ConfigTab client, common, server;
+    private final ConfigTab client;
+    private final ConfigTab common;
+    private final ConfigTab server;
+
+    private final List<ConfigApiTooltipProvider> tooltips = new ArrayList<>();
 
     public ConfigApiScreen(Screen parent, String modId) {
-        super(Component.literal("config_screen_" + modId));
+        super(Component.literal("Config Screen - " + modId));
         this.parent = parent;
-        this.modId = modId;
-
-        ConfigRegistry.getConfigList().forEach(this::collectConfigs);
 
         this.layout = new HeaderAndFooterLayout(this, 24, 28);
         tabManager = new TabManager(this::addRenderableWidget, this::removeWidget);
 
-        client = new ConfigTab(ConfigRegistry.Type.CLIENT, this, getConfigsByType(ConfigRegistry.Type.CLIENT), layout);
-        common = new ConfigTab(ConfigRegistry.Type.COMMON, this, getConfigsByType(ConfigRegistry.Type.COMMON), layout);
-        server = new ConfigTab(ConfigRegistry.Type.SERVER, this, getConfigsByType(ConfigRegistry.Type.SERVER), layout);
+        client = new ConfigTab("Client", createDummyEntries(Items.DIAMOND, this), layout);
+        common = new ConfigTab("Common", createDummyEntries(Items.NETHERITE_SCRAP, this), layout);
+        server = new ConfigTab("Server", createDummyEntries(Items.GOLD_NUGGET, this), layout);
     }
 
     @Override
     protected void init() {
         TabNavigationBar.Builder builder = TabNavigationBar.builder(this.tabManager, this.width);
-        builder.addTabs(this.client, this.common, this.server);
+        builder.addTabs(client, common, server);
+
         this.tabNavigationBar = builder.build();
 
         LinearLayout footer = this.layout.addToFooter(LinearLayout.horizontal().spacing(8));
-        footer.addChild(Button.builder(Component.literal("Close"), btn -> ConfigApi.LOGGER.warn("Screen Closed")).width(100).build());
-        footer.addChild(Button.builder(Component.literal("Reset"), btn -> ConfigApi.LOGGER.warn("Value Reset")).width(100).build());
-        footer.addChild(Button.builder(Component.literal("Save & Exit"), btn -> ConfigApi.LOGGER.warn("Save & Exit")).width(100).build());
+        footer.addChild(Button.builder(Component.literal("This is a Button"), button -> ConfigApi.LOGGER.info("Button was clicked")).width(150).build());
 
         this.layout.visitWidgets(this::addRenderableWidget);
 
-        this.addRenderableWidget(this.tabNavigationBar);
+        this.addRenderableWidget(tabNavigationBar);
         this.tabNavigationBar.selectTab(0, true);
 
         this.repositionElements();
@@ -106,20 +103,21 @@ public class ConfigApiScreen extends Screen {
         return super.keyPressed(keyEvent);
     }
 
-    private void collectConfigs(ModConfig config) {
-        if (config.getModId().equals(modId)) {
-            modConfigs.add(config);
+    private List<ConfigListEntry> createDummyEntries(ItemLike item, ConfigApiScreen screen) {
+        List<ConfigListEntry> entries = new ArrayList<>();
+        for (int index = 1; index <= 100; index++) {
+            entries.add(new ConfigListEntry(index, item, screen));
         }
+
+        return entries;
     }
 
-    private List<ModConfig> getConfigsByType(ConfigRegistry.Type configType) {
-        List<ModConfig> configs = new ArrayList<>();
-        for (ModConfig modConfig : modConfigs) {
-            if (modConfig.getConfigType() ==  configType) {
-                configs.add(modConfig);
-            }
-        }
+    public void addTooltip(ConfigApiTooltipProvider provider) {
+        if (this.tooltips.contains(provider)) return;
+        this.tooltips.add(provider);
+    }
 
-        return configs;
+    public void removeTooltip(ConfigApiTooltipProvider provider) {
+        this.tooltips.remove(provider);
     }
 }
