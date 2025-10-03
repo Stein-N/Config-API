@@ -107,7 +107,6 @@ public class ConfigApiScreen extends Screen {
     }
 
     private void collectConfigs(ModConfig config) {
-        modConfigs.clear();
         if (config.getModId().equals(modId)) {
             modConfigs.add(config);
         }
