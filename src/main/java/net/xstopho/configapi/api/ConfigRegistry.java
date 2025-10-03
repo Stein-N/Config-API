@@ -1,31 +1,29 @@
 package net.xstopho.configapi.api;
 
-import net.minecraft.resources.ResourceLocation;
 import net.xstopho.configapi.ConfigApi;
 import net.xstopho.configapi.annotations.Config;
 import net.xstopho.configapi.config.ModConfig;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConfigRegistry {
 
-    private static final Map<ResourceLocation, ModConfig> CONFIGS = new HashMap<>();
+    private static final List<ModConfig> CONFIG_LIST = new ArrayList<>();
 
     public static void registerConfig(Class<?> clazz, String modId) {
         if (!clazz.isAnnotationPresent(Config.class)) {
             ConfigApi.LOGGER.error("Class '{}' was skipped: Missing Config Annotation!", clazz.getName());
         }
 
-        Config config = clazz.getAnnotation(Config.class);
-        ResourceLocation location = ResourceLocation.fromNamespaceAndPath(modId, config.type().toString().toLowerCase(Locale.ENGLISH) + "/" + config.filename());
+        Config annotation = clazz.getAnnotation(Config.class);
 
-        CONFIGS.putIfAbsent(location, new ModConfig(clazz, config.type(), modId));
+        ModConfig config = new ModConfig(clazz, annotation.type(), modId);
+        if (!CONFIG_LIST.contains(config)) CONFIG_LIST.add(config);
     }
 
-    public static Map<ResourceLocation, ModConfig> getConfigs() {
-        return CONFIGS;
+    public static List<ModConfig> getConfigList() {
+        return CONFIG_LIST;
     }
 
     public enum Type {
