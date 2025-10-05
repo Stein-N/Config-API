@@ -76,6 +76,7 @@ public class ConfigApiScreen extends Screen {
         this.tooltips.forEach(provider -> {
             guiGraphics.renderTooltip(GuiUtils.getFont(), provider.getTooltip(), mouseX, mouseY, DefaultTooltipPositioner.INSTANCE, null);
         });
+        this.tooltips.clear();
     }
 
     @Override
@@ -112,12 +113,8 @@ public class ConfigApiScreen extends Screen {
         return entries;
     }
 
-    public void addTooltip(ConfigApiTooltipProvider provider) {
+    public void addTooltipProvider(ConfigApiTooltipProvider provider) {
         if (this.tooltips.contains(provider)) return;
         this.tooltips.add(provider);
-    }
-
-    public void removeTooltip(ConfigApiTooltipProvider provider) {
-        this.tooltips.remove(provider);
     }
 }

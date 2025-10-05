@@ -19,8 +19,7 @@ public class ConfigTab implements Tab {
         this.title = title;
         this.layout = layout;
 
-        this.configList = new ConfigListWidget(layout.getWidth(), layout.getContentHeight(), layout.getHeaderHeight(), 24);
-        this.configList.replaceEntries(entries);
+        this.configList = new ConfigListWidget(layout.getWidth(), layout.getContentHeight(), layout.getHeaderHeight(), 24, entries);
     }
 
     @Override
