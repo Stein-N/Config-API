@@ -8,6 +8,7 @@
 	"license": "MIT",
 	"icon": "assets/config-api/icon.png",
 	"environment": "*",
+  "accessWidener" : "config-api.accesswidener",
 	"entrypoints": {
 		"main": [ "net.xstopho.configapi.ConfigApi" ],
       "modmenu": [ "net.xstopho.configapi.ConfigApiModMenu" ]

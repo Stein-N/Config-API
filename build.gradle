@@ -34,6 +34,9 @@ dependencies {
 }
 
 loom {
+    def aw = file("src/main/resources/config-api.accesswidener")
+    if (aw.exists()) accessWidenerPath.set(aw)
+
     runs {
         client {
             client()
