@@ -13,13 +13,12 @@ import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPosition
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
 import net.xstopho.configapi.ConfigApi;
+import net.xstopho.configapi.api.ConfigRegistry;
 import net.xstopho.configapi.client.gui.tooltip.ConfigApiTooltipProvider;
 import net.xstopho.configapi.client.gui.utils.GuiUtils;
-import net.xstopho.configapi.client.gui.widget.ConfigListEntry;
 import net.xstopho.configapi.client.gui.widget.ConfigTab;
+import net.xstopho.configapi.config.ModConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,22 +30,20 @@ public class ConfigApiScreen extends Screen {
     private final TabManager tabManager;
     private TabNavigationBar tabNavigationBar;
 
-    private final ConfigTab client;
-    private final ConfigTab common;
-    private final ConfigTab server;
+    private final ConfigTab client, common, server;
 
     private final List<ConfigApiTooltipProvider> tooltips = new ArrayList<>();
 
     public ConfigApiScreen(Screen parent, String modId) {
-        super(Component.literal("Config Screen - " + modId));
+        super(Component.literal("config_api_screen_" + modId));
         this.parent = parent;
 
         this.layout = new HeaderAndFooterLayout(this, 24, 28);
         tabManager = new TabManager(this::addRenderableWidget, this::removeWidget);
 
-        client = new ConfigTab("Client", createDummyEntries(Items.DIAMOND, this), layout);
-        common = new ConfigTab("Common", createDummyEntries(Items.NETHERITE_SCRAP, this), layout);
-        server = new ConfigTab("Server", createDummyEntries(Items.GOLD_NUGGET, this), layout);
+        client = new ConfigTab("Client", collectConfigs(ConfigRegistry.Type.CLIENT, modId), layout);
+        common = new ConfigTab("Common", collectConfigs(ConfigRegistry.Type.COMMON, modId), layout);
+        server = new ConfigTab("Server", collectConfigs(ConfigRegistry.Type.SERVER, modId), layout);
     }
 
     @Override
@@ -97,24 +94,14 @@ public class ConfigApiScreen extends Screen {
     }
 
     @Override
-    public boolean keyPressed(KeyEvent keyEvent) {
-        if (keyEvent.key() == 256 && this.shouldCloseOnEsc()) {
+    public boolean keyPressed(KeyEvent event) {
+        if (event.key() == 256 && this.shouldCloseOnEsc()) {
             Minecraft.getInstance().setScreen(this.parent);
         }
-        return super.keyPressed(keyEvent);
+        return super.keyPressed(event);
     }
 
-    private List<ConfigListEntry> createDummyEntries(ItemLike item, ConfigApiScreen screen) {
-        List<ConfigListEntry> entries = new ArrayList<>();
-        for (int index = 1; index <= 100; index++) {
-            entries.add(new ConfigListEntry(index, item, screen));
-        }
-
-        return entries;
-    }
-
-    public void addTooltipProvider(ConfigApiTooltipProvider provider) {
-        if (this.tooltips.contains(provider)) return;
-        this.tooltips.add(provider);
+    private List<ModConfig> collectConfigs(ConfigRegistry.Type type, String modId) {
+        return ConfigRegistry.getConfigList().stream().filter(config -> config.getConfigType().equals(type) && config.getModId().equals(modId)).toList();
     }
 }

@@ -5,6 +5,7 @@ import net.minecraft.client.gui.components.tabs.Tab;
 import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.network.chat.Component;
+import net.xstopho.configapi.config.ModConfig;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -15,21 +16,21 @@ public class ConfigTab implements Tab {
     private final HeaderAndFooterLayout layout;
     private final ConfigListWidget configList;
 
-    public ConfigTab(String title, List<ConfigListEntry> entries, HeaderAndFooterLayout layout) {
+    public ConfigTab(String title, List<ModConfig> configs, HeaderAndFooterLayout layout) {
         this.title = title;
         this.layout = layout;
 
-        this.configList = new ConfigListWidget(layout.getWidth(), layout.getContentHeight(), layout.getHeaderHeight(), 24, entries);
+        this.configList = new ConfigListWidget(layout.getWidth(), layout.getContentHeight(), layout.getHeaderHeight(), configs);
     }
 
     @Override
     public Component getTabTitle() {
-        return Component.literal(title);
+        return Component.literal(this.title);
     }
 
     @Override
     public Component getTabExtraNarration() {
-        return Component.literal(title);
+        return this.getTabTitle();
     }
 
     @Override
@@ -38,7 +39,7 @@ public class ConfigTab implements Tab {
     }
 
     @Override
-    public void doLayout(ScreenRectangle screenRectangle) {
-        this.configList.setRectangle(screenRectangle.width(), screenRectangle.height(), 0, layout.getHeaderHeight());
+    public void doLayout(ScreenRectangle rectangle) {
+        this.configList.setRectangle(rectangle.width(), rectangle.height(), 0, layout.getHeaderHeight());
     }
 }

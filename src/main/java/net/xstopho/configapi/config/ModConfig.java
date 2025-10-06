@@ -27,6 +27,7 @@ public class ModConfig {
     private final String modId;
     private final File file;
 
+    private final Map<Field, ConfigEntry> valueMap;
     private final Map<Field, Object> defaultValueMap;
     private final Class<?> clazz;
 
@@ -45,6 +46,7 @@ public class ModConfig {
         this.file = new File(String.format("%s/%s/%s/%s.json", path, modId,
                 configType.toString(), clazz.getAnnotation(Config.class).filename()));
 
+        this.valueMap = getConfigEntries();
         this.defaultValueMap = getDefaultValues();
 
         setupConfig();
@@ -64,7 +66,7 @@ public class ModConfig {
     public JsonObject toJson() {
         JsonObject config = new JsonObject();
 
-        for (Map.Entry<Field, ConfigEntry> entry : getConfigEntries().entrySet()) {
+        for (Map.Entry<Field, ConfigEntry> entry : this.valueMap.entrySet()) {
             ConfigEntry configEntry = entry.getValue();
             Field field = entry.getKey();
 
@@ -110,7 +112,7 @@ public class ModConfig {
     }
 
     public void fromJson(JsonObject config) {
-        for (Map.Entry<Field, ConfigEntry> entry : getConfigEntries().entrySet()) {
+        for (Map.Entry<Field, ConfigEntry> entry : this.valueMap.entrySet()) {
             ConfigEntry configEntry = entry.getValue();
             Field field = entry.getKey();
 
@@ -226,6 +228,17 @@ public class ModConfig {
         }
 
         return map;
+    }
+
+    public Map<Field, ConfigEntry> getValues() {
+        return this.valueMap;
+    }
+
+    public Object getValue(Field field) {
+        if (valueMap.containsKey(field)) {
+            return valueMap.get(field);
+        }
+        throw new IllegalStateException("Value '" + field.getName() + "' was skipped!");
     }
 
     public Object getDefaultValue(Field field) {
