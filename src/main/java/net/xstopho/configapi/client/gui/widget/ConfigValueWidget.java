@@ -29,6 +29,11 @@ public class ConfigValueWidget extends AbstractWidget implements ConfigApiToolti
 
     @Override
     protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+
+        if (this.isHovered()) {
+            guiGraphics.fill(this.getX(), this.getY(), this.getRight(), this.getBottom(), 0x18FFFFFF);
+        }
+
         guiGraphics.drawString(GuiUtils.getFont(), Component.literal(this.field.getName()), this.getX(), this.getY(), -1);
     }
 

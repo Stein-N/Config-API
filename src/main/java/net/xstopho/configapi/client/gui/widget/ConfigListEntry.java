@@ -6,6 +6,8 @@ import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.xstopho.configapi.annotations.ConfigEntry;
 import net.xstopho.configapi.client.gui.utils.GuiUtils;
 import net.xstopho.configapi.config.ModConfig;
@@ -32,6 +34,11 @@ public class ConfigListEntry extends ContainerObjectSelectionList.Entry<ConfigLi
 
     @Override
     public void renderContent(GuiGraphics guiGraphics, int mouseX, int mouseY, boolean isHovering, float partialTick) {
+        // Render
+        if (mouseY >= this.getContentY() && mouseY <= this.getContentY() + 24) {
+            guiGraphics.fill(this.getX(), this.getY(), this.getContentRight(), this.getY() + 24, 0x18FFFFFF);
+        }
+
         Component title;
         if (!isExtended()) title = Component.literal("∧ " + this.config.getConfigName() + " ∧");
         else title = Component.literal("∨ " + this.config.getConfigName() + " ∨");
