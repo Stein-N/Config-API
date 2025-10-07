@@ -34,18 +34,17 @@ public class ConfigListEntry extends ContainerObjectSelectionList.Entry<ConfigLi
 
     @Override
     public void renderContent(GuiGraphics guiGraphics, int mouseX, int mouseY, boolean isHovering, float partialTick) {
-        // Render
+        // Render Highlight Background
         if (mouseY >= this.getContentY() && mouseY <= this.getContentY() + 24) {
             guiGraphics.fill(this.getX(), this.getY(), this.getContentRight(), this.getY() + 24, 0x18FFFFFF);
         }
 
-        Component title;
-        if (!isExtended()) title = Component.literal("∧ " + this.config.getConfigName() + " ∧");
-        else title = Component.literal("∨ " + this.config.getConfigName() + " ∨");
-
+        // Render Config Filename
+        Component title = Component.literal(this.config.getConfigName());
         int xPos = (GuiUtils.getScaledGuiWidth() / 2) - (GuiUtils.getFont().width(title.getString()) / 2);
         guiGraphics.drawString(GuiUtils.getFont(), title, xPos, this.getContentY(), 0xff4ef542);
 
+        // Render Config Values when extended
         if (this.isExtended()) {
             for (int index = 0; index < this.values.size(); index++) {
                 ConfigValueWidget widget = this.values.get(index);
@@ -80,7 +79,12 @@ public class ConfigListEntry extends ContainerObjectSelectionList.Entry<ConfigLi
     }
 
     private void changeHeight() {
-        int height = isExtended() ? 24 : (this.getHeight() * this.values.size()) + this.getHeight();
+        int height;
+        if (isExtended()) {
+            height = 24;
+        } else {
+            height = (this.getHeight() * this.values.size()) + this.getHeight();
+        }
         this.setHeight(height);
     }
 }
