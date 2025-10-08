@@ -49,7 +49,7 @@ public class ConfigListEntry extends ContainerObjectSelectionList.Entry<ConfigLi
         if (this.isExtended()) {
             for (int index = 0; index < this.values.size(); index++) {
                 ConfigValueWidget widget = this.values.get(index);
-                widget.setPosition(this.getContentX(), this.getContentY() + 24 + (24 * index));
+                widget.setPosition(this.getX(), this.getY() + 24 + (24 * index));
                 widget.render(guiGraphics, mouseX, mouseY, partialTick);
             }
         }
