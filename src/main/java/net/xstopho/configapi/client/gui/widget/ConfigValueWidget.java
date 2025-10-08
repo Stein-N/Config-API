@@ -34,8 +34,8 @@ public class ConfigValueWidget extends AbstractWidget implements ConfigApiToolti
 
     @Override
     protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        if (mouseY >= this.getY() && mouseY <= this.getY() + 24) {
-            guiGraphics.fill(this.getX(), this.getY(), this.getRight(), this.getY() + 24, 0x18FFFFFF);
+        if (mouseY >= this.getY() + 2 && mouseY <= this.getY() + 22) {
+            guiGraphics.fill(this.getX(), this.getY() + 2, this.getRight(), this.getY() + 22, 0x18FFFFFF);
         }
 
         guiGraphics.drawString(GuiUtils.getFont(), Component.literal(this.field.getName()), this.getX(), this.getY(), -1);
