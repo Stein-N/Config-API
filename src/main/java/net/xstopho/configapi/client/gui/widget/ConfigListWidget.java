@@ -27,7 +27,7 @@ public class ConfigListWidget extends ContainerObjectSelectionList<ConfigListEnt
     }
 
     private void createEntries(ModConfig config) {
-        ConfigListEntry entry = new ConfigListEntry(config);
+        ConfigListEntry entry = new ConfigListEntry(config, this.getRowWidth());
         this.addEntry(entry);
     }
 }

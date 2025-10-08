@@ -21,8 +21,9 @@ public class ConfigListEntry extends ContainerObjectSelectionList.Entry<ConfigLi
     private final List<ConfigValueWidget> values = new ArrayList<>();
     private final ModConfig config;
 
-    public ConfigListEntry(ModConfig config) {
+    public ConfigListEntry(ModConfig config, int width) {
         this.config = config;
+        this.setWidth(width);
 
         config.getValues().forEach(this::addValue);
     }
@@ -35,7 +36,7 @@ public class ConfigListEntry extends ContainerObjectSelectionList.Entry<ConfigLi
     @Override
     public void renderContent(GuiGraphics guiGraphics, int mouseX, int mouseY, boolean isHovering, float partialTick) {
         // Render Highlight Background
-        if (mouseY >= this.getContentY() && mouseY <= this.getContentY() + 24) {
+        if (mouseY >= this.getY() && mouseY <= this.getY() + 24) {
             guiGraphics.fill(this.getX(), this.getY(), this.getContentRight(), this.getY() + 24, 0x18FFFFFF);
         }
 
@@ -64,7 +65,12 @@ public class ConfigListEntry extends ContainerObjectSelectionList.Entry<ConfigLi
 
     @Override
     public List<? extends GuiEventListener> children() {
-        return this.values;
+        List<GuiEventListener> list = new ArrayList<>();
+        for (ConfigValueWidget listener : this.values) {
+            list.add(listener);
+            list.addAll(listener.getChildren());
+        }
+        return list;
     }
 
     public void addValue(Field field, ConfigEntry entry) {

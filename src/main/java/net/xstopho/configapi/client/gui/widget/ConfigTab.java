@@ -5,6 +5,7 @@ import net.minecraft.client.gui.components.tabs.Tab;
 import net.minecraft.client.gui.layouts.HeaderAndFooterLayout;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
 import net.minecraft.network.chat.Component;
+import net.xstopho.configapi.client.gui.utils.GuiUtils;
 import net.xstopho.configapi.config.ModConfig;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class ConfigTab implements Tab {
         this.title = title;
         this.layout = layout;
 
-        this.configList = new ConfigListWidget(layout.getWidth(), layout.getContentHeight(), layout.getHeaderHeight(), configs);
+        this.configList = new ConfigListWidget(GuiUtils.getScaledGuiWidth(), layout.getContentHeight(), layout.getHeaderHeight(), configs);
     }
 
     @Override
